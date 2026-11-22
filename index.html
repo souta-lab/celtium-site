@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Celtium — Native Vulkan Renderer for Minecraft 1.12.2</title>
+<meta name="description" content="Celtium is a native Vulkan renderer for Minecraft 1.12.2 on CleanroomMC. No OpenGL context, shader packs with real shadows, native Demonica support, and performance that is measured, not claimed.">
+<meta name="theme-color" content="#0a0c10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Celtium">
+<meta property="og:title" content="Celtium — Native Vulkan Renderer for Minecraft 1.12.2">
+<meta property="og:description" content="A Vulkan renderer replacement for Minecraft 1.12.2 on CleanroomMC. Shader packs with real shadows, broad modpack compatibility, measured performance.">
+<meta property="og:url" content="https://souta-lab.github.io/celtium-site/">
+<meta property="og:image" content="https://souta-lab.github.io/celtium-site/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Celtium — Native Vulkan Renderer for Minecraft 1.12.2">
+<meta name="twitter:description" content="A Vulkan renderer replacement for Minecraft 1.12.2 on CleanroomMC. Measured, not claimed.">
+<meta name="twitter:image" content="https://souta-lab.github.io/celtium-site/assets/img/og.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/img/tile.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-in">
+    <a class="brand" href="#top" aria-label="Celtium — back to top">
+      <img src="assets/img/tile.svg" alt="" width="38" height="38">
+      <span class="brand-name">CELTIUM</span>
+      <span class="brand-sub">Vk renderer · 1.12.2</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="site-nav" id="siteNav" aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#performance">Performance</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#install">Install</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#thanks">Thanks</a>
+      <a class="nav-gh" href="https://github.com/souta-lab/celtium">GitHub</a>
+      <a class="btn btn-sm" href="https://github.com/souta-lab/celtium/releases/tag/v0.3.0">Download v0.3.0</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Vulkan renderer · Minecraft 1.12.2 · CleanroomMC</p>
+      <h1 class="hero-title">CELTIUM</h1>
+      <p class="hero-pitch">A native Vulkan renderer for Minecraft 1.12.2.<br>
+      Celtium creates the game window <strong>without an OpenGL context</strong> and draws terrain, entities,
+      items, particles, sky, clouds and the GUI into Vulkan images — a renderer replacement, not a GL translator.</p>
+      <p class="hero-note">Built from Celeritas. <em>Celtium</em> was a historical proposed name for element 72, hafnium.</p>
+      <div class="hero-cta">
+        <a class="btn btn-lg" href="https://github.com/souta-lab/celtium/releases/tag/v0.3.0">Download v0.3.0</a>
+        <a class="btn btn-lg btn-ghost" href="https://github.com/souta-lab/celtium">View on GitHub</a>
+      </div>
+      <ul class="stat-strip" aria-label="Key facts">
+        <li><span class="stat-k">Target</span><span class="stat-v">MC 1.12.2 · Cleanroom 0.7</span></li>
+        <li><span class="stat-k">API</span><span class="stat-v">Vulkan 1.2+</span></li>
+        <li><span class="stat-k">Runtime</span><span class="stat-v">Java 25+</span></li>
+        <li><span class="stat-k">OpenGL context</span><span class="stat-v">None</span></li>
+        <li><span class="stat-k">License</span><span class="stat-v">LGPL-3.0</span></li>
+      </ul>
+      <figure class="hero-fig">
+        <img src="assets/img/shadow-golden.jpg" width="1600" height="900" alt="Minecraft scene rendered by Celtium with the Complementary shader pack: stone pillars on a patterned floor at golden hour, with cast shadows and volumetric clouds">
+        <figcaption>Complementary shader pack on the shipped v0.3.0 jar — the cast-shadow proof scene, world time pinned to 1000. A real captured frame (RX 6400), not a render.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <p class="sec-label">01 — Features</p>
+      <h2 class="sec-title">A renderer, rebuilt on Vulkan</h2>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Shader packs, real shadows</h3>
+          <p>Iris-style shader packs run through the pack route with working shadow maps. Cast shadows are
+          <strong>verified, not assumed</strong>: on the shipped v0.3.0 jar, a pinned-time proof scene shows
+          Complementary's pillar shadows appear, stretch and move with world time.</p>
+        </article>
+        <article class="card">
+          <h3>Native Demonica support</h3>
+          <p>Demonica is supported natively in-core — its bundled GLSM layer talks to Celtium's compatibility
+          surface directly. Menus, textured GUI draws and in-world programs are maintained against real packs,
+          not emulated and not refused.</p>
+        </article>
+        <article class="card">
+          <h3>No OpenGL context</h3>
+          <p>The window, swapchain, textures and framebuffers are Vulkan objects from the first frame.
+          Terrain, entities, items, particles, sky, clouds and the GUI are drawn by native Vulkan passes
+          that follow Minecraft's own semantics.</p>
+        </article>
+        <article class="card">
+          <h3>A GL-less layer for mods</h3>
+          <p>Mods that call OpenGL directly are served by a compatibility layer covering display lists,
+          immediate mode, VBOs, FBOs and legacy state — applied only to mods, only where they call GL.
+          The 1.12.2 ecosystem keeps working.</p>
+        </article>
+        <article class="card">
+          <h3>Modpacks, verified</h3>
+          <p>SkyFactory 4, All the Mods 3, RLCraft, SevTech: Ages, Project Ozone 3 and Nomifactory CEu are
+          verified end-to-end: zero Vulkan validation errors, full log review, same-pose picture comparison
+          on AMD and Intel. Supersymmetry (188 mods) and Enigmatica 2: Expert – Extended (≈430 mods) reach
+          the world with zero validation errors.</p>
+        </article>
+        <article class="card">
+          <h3>An overhaul in progress</h3>
+          <p>The renderer is being rebuilt underneath: a global vertex arena, region offsets via SSBO,
+          explicit allocation on the hot path, pipeline-state caching. Every landing passes a 1,200+ test
+          gate on real hardware before it reaches <code>main</code>.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PERFORMANCE ============ -->
+  <section class="section section-alt" id="performance">
+    <div class="wrap">
+      <p class="sec-label">02 — Performance</p>
+      <h2 class="sec-title">Measured, not claimed</h2>
+      <p class="sec-lead">Celtium is benchmarked against Celeritas — the renderer it succeeds — in paired runs
+      on the same machine: same scene, alternating arms, warm-window medians. The figure below is frame time at
+      warm P50 (the median frame once the world has settled; lower is better). Results are scene-dependent,
+      and this page says which is which.</p>
+
+      <div class="perf-table" role="table" aria-label="Measured performance versus Celeritas">
+        <div class="perf-row perf-head" role="row">
+          <span role="columnheader">Scene · protocol</span>
+          <span role="columnheader">Result vs Celeritas</span>
+          <span role="columnheader">Status</span>
+        </div>
+        <div class="perf-row" role="row">
+          <div class="perf-scene" role="cell">
+            <strong>Supersymmetry modpack</strong>
+            <span>GregTech CEu based · 188 mods · paired A/B, warm P50</span>
+          </div>
+          <div class="perf-nums" role="cell">
+            <span class="perf-num"><b>+2.5%</b> RX 6400</span>
+            <span class="perf-num"><b>+6.4%</b> UHD 630</span>
+          </div>
+          <span class="chip chip-ahead" role="cell">Ahead</span>
+        </div>
+        <div class="perf-row" role="row">
+          <div class="perf-scene" role="cell">
+            <strong>Generated-world flight</strong>
+            <span>Intel HD Graphics 620 (integrated) · paired A/B, warm P50</span>
+          </div>
+          <div class="perf-nums" role="cell">
+            <span class="perf-num"><b>≈10.2 ms</b> Celtium</span>
+            <span class="perf-num"><b>≈7.4 ms</b> Celeritas</span>
+          </div>
+          <span class="chip chip-behind" role="cell">Behind — closing</span>
+        </div>
+      </div>
+      <p class="perf-foot">Sign convention: positive = Celtium faster. The flight-scene gap has narrowed from
+      1.66× to ≈1.37× during the November optimisation pass and is still being closed. An earlier protocol
+      (r14 build, mod shader programs on) measured Celtium behind in the Supersymmetry scene — the full tables,
+      including unfavourable runs, are in the
+      <a href="https://github.com/souta-lab/celtium#-performance">README's performance section</a>.</p>
+      <div class="goal-box">
+        <p class="goal-k">The v0.4.0 bar</p>
+        <p>At least <strong>1.25× faster</strong> than the same-protocol Celeritas control in <strong>every</strong>
+        scene of a fixed scene set — no exceptions. That is a target the work is measured against, not a result.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <p class="sec-label">03 — Gallery</p>
+      <h2 class="sec-title">Real frames, from real verification runs</h2>
+      <p class="sec-lead">Every image below is a frame captured from the shipped v0.3.0 jar during the project's
+      own verification legs — no renders, no mock-ups, no AI imagery.</p>
+      <div class="grid grid-gallery">
+        <figure class="shot">
+          <img src="assets/img/shadow-golden.jpg" width="1600" height="900" loading="lazy" alt="Complementary shader pack at golden hour: stone pillars casting long shadows across a patterned floor">
+          <figcaption><strong>Golden hour, Complementary.</strong> The cast-shadow proof scene, world time pinned to 1000. The pillar shadows in this frame are the verified ones.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/img/shadow-midday.jpg" width="1600" height="900" loading="lazy" alt="The same pillar scene at midday under the Complementary shader pack, with volumetric clouds">
+          <figcaption><strong>Midday, same scene.</strong> Textured terrain, patterned floor and volumetric clouds, presented through Celtium's Vulkan swapchain.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/img/shadow-clouds.jpg" width="1600" height="900" loading="lazy" alt="The pillar scene under a brighter sky with drifting volumetric clouds">
+          <figcaption><strong>Same leg, later frame.</strong> Lighting and cloud work are computed by the pack; Celtium's job is to present them exactly — which is what the proof leg checks.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTALL ============ -->
+  <section class="section section-alt" id="install">
+    <div class="wrap">
+      <p class="sec-label">04 — Install</p>
+      <h2 class="sec-title">Up and running</h2>
+      <div class="grid grid-2">
+        <ol class="steps">
+          <li>
+            <h3>Prepare a Cleanroom instance</h3>
+            <p>Use a Cleanroom Relauncher instance: CleanroomMC <strong>0.7.12-alpha or later</strong> (0.7 line),
+            LWJGL 3.4.3, and a <strong>Java 25+</strong> game JVM.</p>
+          </li>
+          <li>
+            <h3>Drop the jar in <code>mods/</code></h3>
+            <p>Download <code>celtium-forge-mc1.12.2-0.3.0.jar</code> from the
+            <a href="https://github.com/souta-lab/celtium/releases/tag/v0.3.0">v0.3.0 release</a> and put it in
+            <code>mods/</code>. Use the plain jar — not <code>-dev</code> or <code>-reobf</code>.</p>
+          </li>
+          <li>
+            <h3>Remove Celeritas</h3>
+            <p>Install one renderer, not both. Celtium keeps the <code>celeritas</code> mod ID and resource
+            namespace, so the two cannot coexist.</p>
+          </li>
+          <li>
+            <h3>Launch and enter a world</h3>
+            <p>For dynamic lights, use
+            <a href="https://modrinth.com/mod/pulsar-lighting-engine">Pulsar Lighting Engine</a>;
+            Alfheim is unsupported. Then check the GUI, menus, creative tabs and tooltips like any first run.</p>
+          </li>
+        </ol>
+        <div>
+          <table class="req-table">
+            <caption>Requirements</caption>
+            <tbody>
+              <tr><th scope="row">Minecraft</th><td>1.12.2</td></tr>
+              <tr><th scope="row">Loader</th><td>CleanroomMC 0.7.12-alpha or later (0.7 line)</td></tr>
+              <tr><th scope="row">Java</th><td>25+ (game JVM)</td></tr>
+              <tr><th scope="row">Vulkan</th><td>1.2+ loader and device with graphics + presentation</td></tr>
+              <tr><th scope="row">Verified GPUs</th><td>AMD Radeon RX 6400 (RADV), Intel UHD Graphics 630 (ANV) — Linux / Mesa</td></tr>
+              <tr><th scope="row">Unverified</th><td>NVIDIA, other GPU models, Windows, macOS —
+                <a href="https://github.com/souta-lab/celtium/issues">reports welcome</a></td></tr>
+            </tbody>
+          </table>
+          <p class="req-note">Vulkan 1.2 alone is not a compatibility guarantee: features are chosen by device
+          capability, not by GPU name.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROADMAP ============ -->
+  <section class="section" id="roadmap">
+    <div class="wrap">
+      <p class="sec-label">05 — Roadmap</p>
+      <h2 class="sec-title">What is next</h2>
+      <div class="grid grid-2">
+        <article class="card rel-card">
+          <p class="rel-tag">v0.3.1 · Bugfix release · In preparation</p>
+          <h3>Fixes already landed on <code>main</code></h3>
+          <ul class="tick-list">
+            <li><strong>Enchanting-table crash.</strong> Placing an enchanting table (or another tile-entity
+            special renderer) crashed the shipped jar with MemoryStack exhaustion in the immediate-mode flush. Fixed.</li>
+            <li><strong>0×0 surface crash.</strong> When the window surface reported 0×0 — minimise, alt-tab,
+            mid-resize — the swapchain escalated to a crash. It now waits for a real size. Fixed.</li>
+            <li><strong>Demonica menu corruption.</strong> Text as white blocks, black background, missing
+            textures: three stacked causes in the GLSM compatibility path. Fixed, and verified with proof runs.</li>
+            <li><strong>Performance work.</strong> The graphics-pipeline re-creation fix, the global vertex
+            arena and the region-offset SSBO, landed since 0.3.0.</li>
+          </ul>
+          <p class="rel-note">v0.3.1 ships when the known-defect list is empty — not on a calendar date.</p>
+        </article>
+        <article class="card rel-card">
+          <p class="rel-tag">v0.4.0 · Next major* · Target: late December 2026</p>
+          <h3>The release criteria</h3>
+          <ul class="tick-list">
+            <li><strong>No bugs in large modpacks</strong> — the verified-pack standard, held at pack scale.</li>
+            <li><strong>Always significantly outperform Celeritas</strong> — at least 1.25× at warm P50 in
+            every scene of a fixed scene set, no exceptions.</li>
+            <li><strong>Rendering optimisation almost fully overhauled</strong> — the rebuild programme, finished.</li>
+            <li><strong>Mesh shaders</strong> on supported GPUs.</li>
+          </ul>
+          <p class="rel-note">These are the goals the work is measured against, not promises.
+          *Celtium follows <a href="https://zerover.org">zerover</a>: while on 0.x, the middle number is
+          effectively the major version.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPECIAL THANKS ============ -->
+  <section class="section section-alt" id="thanks">
+    <div class="wrap">
+      <p class="sec-label">06 — Special thanks</p>
+      <h2 class="sec-title">Special thanks</h2>
+      <div class="thanks-card">
+        <img src="assets/img/tile.svg" alt="" width="64" height="64" class="thanks-tile">
+        <div>
+          <p class="thanks-name">biyu_bu <span class="thanks-name-ko">(밥다섯)</span></p>
+          <p>Tireless testing on real modpacks, with detailed reports — logs, screenshots, and retests — that
+          drove many fixes, including the Demonica GUI corruption and the swapchain crash after v0.3.0.
+          Several bugs fixed since the 0.3.0 release exist as fixes because biyu_bu found them first, on
+          hardware and in packs this project does not have. Thank you.</p>
+          <p class="thanks-more">— and thanks to every tester who files a report and retests the fix.
+          This renderer gets better because you do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-in">
+    <div class="footer-brand">
+      <p class="footer-name">CELTIUM</p>
+      <p>A native Vulkan renderer for Minecraft 1.12.2 on CleanroomMC, built from Celeritas.</p>
+    </div>
+    <nav class="footer-links" aria-label="Project links">
+      <a href="https://github.com/souta-lab/celtium">GitHub repository</a>
+      <a href="https://github.com/souta-lab/celtium/releases">Releases</a>
+      <a href="https://github.com/souta-lab/celtium/issues">Issues</a>
+      <a href="https://github.com/souta-lab/celtium#-license-and-attribution">Upstream credits (README)</a>
+    </nav>
+    <div class="footer-legal">
+      <p>Celtium is licensed under <strong>LGPL-3.0</strong> and retains Celeritas' licensing and upstream
+      history. The fixed source reference is
+      <a href="https://github.com/GTNewHorizons/Celeritas">GTNewHorizons/Celeritas</a>; every upstream source
+      is credited in the README's attribution table.</p>
+      <p>Community project — not affiliated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB.</p>
+      <p>© <span id="year">2026</span> Celtium contributors.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

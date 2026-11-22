@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="Celtium element tile">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c4162a"/>
+      <stop offset="1" stop-color="#7a1fd1"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="14" fill="url(#g)"/>
+  <rect width="120" height="120" rx="14" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/>
+  <text x="12" y="26" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="18" font-weight="600" fill="#ffffff" fill-opacity="0.9">72</text>
+  <text x="60" y="84" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="58" font-weight="800" fill="#ffffff">Ct</text>
+  <text x="60" y="108" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="500" fill="#ffffff" fill-opacity="0.85">celtium</text>
+</svg>
