@@ -41,7 +41,7 @@
       <a href="#roadmap">Roadmap</a>
       <a href="#thanks">Thanks</a>
       <a class="nav-gh" href="https://github.com/souta-lab/celtium">GitHub</a>
-      <a class="btn btn-sm" href="https://github.com/souta-lab/celtium/releases/tag/v0.3.1">Download v0.3.1</a>
+      <a class="btn btn-sm" href="https://github.com/souta-lab/celtium/releases/tag/v0.3.2">Download v0.3.2</a>
     </nav>
   </div>
 </header>
@@ -58,7 +58,7 @@
       items, particles, sky, clouds and the GUI into Vulkan images — a renderer replacement, not a GL translator.</p>
       <p class="hero-note">Built from Celeritas. <em>Celtium</em> was a historical proposed name for element 72, hafnium.</p>
       <div class="hero-cta">
-        <a class="btn btn-lg" href="https://github.com/souta-lab/celtium/releases/tag/v0.3.1">Download v0.3.1</a>
+        <a class="btn btn-lg" href="https://github.com/souta-lab/celtium/releases/tag/v0.3.2">Download v0.3.2</a>
         <a class="btn btn-lg btn-ghost" href="https://github.com/souta-lab/celtium">View on GitHub</a>
       </div>
       <ul class="stat-strip" aria-label="Key facts">
@@ -212,8 +212,8 @@
           </li>
           <li>
             <h3>Drop the jar in <code>mods/</code></h3>
-            <p>Download <code>celtium-forge-mc1.12.2-0.3.1.jar</code> from the
-            <a href="https://github.com/souta-lab/celtium/releases/tag/v0.3.1">v0.3.1 release</a> and put it in
+            <p>Download <code>celtium-forge-mc1.12.2-0.3.2.jar</code> from the
+            <a href="https://github.com/souta-lab/celtium/releases/tag/v0.3.2">v0.3.2 release</a> and put it in
             <code>mods/</code>. Use the plain jar — not <code>-dev</code> or <code>-reobf</code>.</p>
           </li>
           <li>
@@ -255,22 +255,27 @@
       <h2 class="sec-title">What is next</h2>
       <div class="grid grid-2">
         <article class="card rel-card">
-          <p class="rel-tag">v0.3.1 · Bugfix release · Shipped 2026-11-22</p>
-          <h3>What shipped in v0.3.1</h3>
+          <p class="rel-tag">v0.3.2 · Hotfix release · Shipped 2026-11-23</p>
+          <h3>What shipped in v0.3.2</h3>
           <ul class="tick-list">
-            <li><strong>Enchanting-table crash.</strong> Placing an enchanting table (or another tile-entity
-            special renderer) crashed the shipped jar with MemoryStack exhaustion in the immediate-mode flush. Fixed.</li>
-            <li><strong>0×0 surface crash.</strong> When the window surface reported 0×0 — minimise, alt-tab,
-            mid-resize — the swapchain escalated to a crash. It now waits for a real size. Fixed.</li>
-            <li><strong>Demonica menu corruption.</strong> Text as white blocks, black background, missing
-            textures: three stacked causes in the GLSM compatibility path. Fixed, and verified with proof runs.</li>
-            <li><strong>Performance work.</strong> The graphics-pipeline re-creation fix, the global vertex
-            arena and the region-offset SSBO, landed since 0.3.0.</li>
+            <li><strong>Flush-boundary crash fix.</strong> If a texture's descriptor set was evicted from the
+            cache after a draw group was queued, the freed set could be bound at flush time and crash inside
+            the driver. The flush now checks the cache and rebuilds the set if needed — in all four
+            immediate-mode families. The hole is proven at code level with contract tests; a live
+            positive-fire demonstration is still pending, so this is not claimed as reproduced-and-plugged.</li>
+            <li><strong>Loading-splash misalignment.</strong> The loading screen now aligns to the window's
+            real size instead of staying frozen at the requested size. Live verification is still pending.</li>
+            <li><strong>Twilight Forest shader links.</strong> The GLSL conversion now handles
+            <code>gl_NormalScale</code>, the cause of most of the Twilight Forest link failures.
+            The acceptance re-measurement is still pending.</li>
+            <li><strong>BSL black wedge: a guard, off by default.</strong> A guard for fractional-exponent
+            <code>pow()</code> is included (<code>-Dceltium.vulkan.fractionalPowGuard</code>), but it is
+            off by default and unverified — the BSL black wedge is <strong>not</strong> fixed.</li>
           </ul>
-          <p class="rel-note">Shipped 2026-11-22 as a maintenance release for 0.3.0 (full gate: 1,277 tests,
-          zero failures). The BSL black wedge is <strong>not</strong> fixed in this release — the
-          <a href="https://github.com/souta-lab/celtium/releases/tag/v0.3.1">release notes</a> state the
-          known issues plainly.</p>
+          <p class="rel-note">Shipped 2026-11-23 as a hotfix for 0.3.1 (full gate: 1,362 tests,
+          zero failures). Next: a v0.3.3 patch if needed, then v0.4.0. The
+          <a href="https://github.com/souta-lab/celtium/releases/tag/v0.3.2">release notes</a> state the
+          known issues plainly, including the still-unfixed item 699 and VUID-09600.</p>
         </article>
         <article class="card rel-card">
           <p class="rel-tag">v0.4.0 · Next major* · Target: late December 2026</p>
